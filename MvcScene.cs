@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -173,53 +173,5 @@ public class MvcScene : MonoBehaviour
         var newMvcBehavior = newGameObject.AddComponent<T>();
 
         return newMvcBehavior;
-    }
-
-    /// <summary>
-    /// Add listener to a given event.
-    /// Usage: Call it inside OnEnable() method of MonoBehaviours.
-    /// </summary>
-    /// <param name="eventName">Name of the event.</param>
-    /// <param name="listener">Callback function.</param>
-    public void AddEventListener(string eventName, UnityAction listener)
-    {
-        UnityEvent unityEvent;
-        if (eventDictionary.TryGetValue(eventName, out unityEvent))
-        {
-            unityEvent.AddListener(listener);
-        }
-        else
-        {
-            unityEvent = new UnityEvent();
-            unityEvent.AddListener(listener);
-            eventDictionary.Add(eventName, unityEvent);
-        }
-    }
-
-    /// <summary>
-    /// Remove listener from a given event.
-    /// Usage: Call it inside OnDisable() method of MonoBehaviours.
-    /// </summary>
-    /// <param name="eventName">Name of the event.</param>
-    /// <param name="listener">Callback function.</param>
-    public void RemoveEventListener(string eventName, UnityAction listener)
-    {
-        UnityEvent unityEvent;
-        if (eventDictionary.TryGetValue(eventName, out unityEvent))
-        {
-            unityEvent.RemoveListener(listener);
-        }
-    }
-
-    /// <summary>
-    /// Triggers all registered callbacks of a given event.
-    /// </summary>
-    public void TriggerEvent(string eventName)
-    {
-        UnityEvent unityEvent;
-        if (eventDictionary.TryGetValue(eventName, out unityEvent))
-        {
-            unityEvent.Invoke();
-        }
     }
 }
