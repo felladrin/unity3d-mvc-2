@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class MvcScene : MonoBehaviour
 {
-    private Dictionary<string, UnityEvent> eventDictionary = new Dictionary<string, UnityEvent>();
     private Dictionary<string, object> singleInstanceMvcBehaviors = new Dictionary<string, object>();
 
     /// <summary>
